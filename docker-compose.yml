@@ -1,17 +1,27 @@
 version: '3.9'
-services:
 
-  psqldata:
-    image: postgres:15
-    container_name: psqldata
-    ports:
-      - "5432:5432"
+services:
+  hackernewsapp:
+    build:
+      context: .
+      dockerfile: Dockerfile
     environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=postgres
-    volumes:
-      - pgdata:/var/lib/postgresql/data
+      ENV_NAME: dev
+    ports:
+      - 3002:3002
+
+
+  # psqldata:
+  #   image: postgres:15
+  #   container_name: psqldata
+  #   ports:
+  #     - "5432:5432"
+  #   environment:
+  #     - POSTGRES_USER=postgres
+  #     - POSTGRES_PASSWORD=postgres
+  #     - POSTGRES_DB=postgres
+  #   volumes:
+  #     - pgdata:/var/lib/postgresql/data
 
 volumes:
   pgdata:

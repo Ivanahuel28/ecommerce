@@ -1,5 +1,31 @@
-FROM postgres
-ENV POSTGRES_DB mydb
-ENV POSTGRES_USER myuser
-ENV POSTGRES_PASSWORD mysecretpassword
-COPY /resources/database/db.sql /docker-entrypoint-initdb.d/
+FROM node as builder
+
+# Create app directory
+WORKDIR /usr/src/app
+
+# Install app dependencies
+COPY package*.json ./
+
+RUN npm ci
+
+COPY . .
+
+RUN npm run dev
+
+FROM node:slim
+
+ENV NODE_ENV production
+USER node
+
+# Create app directory
+WORKDIR /usr/src/app
+
+# Install app dependencies
+COPY package*.json ./
+
+RUN npm ci --production
+
+COPY --from=builder /usr/src/app/dist ./dist
+
+EXPOSE 3001
+CMD [ "node", "dist/app.js" ]
