@@ -1,8 +1,8 @@
 import { DataTypes } from "sequelize";
 import { sequelize } from "../config/postgres"
 
-export const Product = sequelize.define(
-    "products",
+const Product = sequelize.define(
+    'product',
     {
         id: {
             type: DataTypes.UUID,
@@ -21,5 +21,10 @@ export const Product = sequelize.define(
         stock: {
             type: DataTypes.INTEGER
         }
+    },
+    {
+        freezeTableName: true
     }
-)
+);
+
+export { Product };

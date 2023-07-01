@@ -11,10 +11,11 @@ const cleanFileName = (fileName:string) => {
 
 // lee las rutas de esta carpeta
 readdirSync(PATH_ROUTER).filter((fileName) => {
+    console.log(`leyendo archivos`);
     const cleanName = cleanFileName(fileName);
     if ( cleanName !== 'index' ) {
         import(`./${cleanName}`).then((moduleRouter) => {
-            console.log(`Se esta cargando la ruta... /${cleanName} `);
+            console.log(`Se estaa cargando la ruta... /${cleanName} `);
             router.use(`/${cleanName}`, moduleRouter.router);
         });
     }

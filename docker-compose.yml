@@ -1,27 +1,34 @@
-version: '3.9'
+version: '3'
 
 services:
-  hackernewsapp:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    environment:
-      ENV_NAME: dev
-    ports:
-      - 3002:3002
-
-
-  # psqldata:
-  #   image: postgres:15
-  #   container_name: psqldata
+  # api:
+  #   container_name: api
+  #   restart: always
+  #   build: .
   #   ports:
-  #     - "5432:5432"
-  #   environment:
-  #     - POSTGRES_USER=postgres
-  #     - POSTGRES_PASSWORD=postgres
-  #     - POSTGRES_DB=postgres
-  #   volumes:
-  #     - pgdata:/var/lib/postgresql/data
+  #     - 3001:3001
+  #     - 9229:9229
 
-volumes:
-  pgdata:
+    # image: node:18
+    # volumes:
+    #   - ./node_modules:/node_modules
+    #   - ./package.json:/package.json
+    #   - ./tsconfig.json:/tsconfig.json
+    #   - ./src/app.ts:/src/
+    # ports:
+    #   - 3000:3000
+    #   - 9229:9229
+    # command: yarn nodemon --signal SIGINT --inspect=0.0.0.0:9229 --nolazy app.ts
+
+  psqldata:
+    image: postgres:15
+    container_name: psqldata
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=postgres
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
+      - ./resources/database/db.sql:/docker-entrypoint-initdb.d/db.sql

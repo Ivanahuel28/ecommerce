@@ -1,7 +1,7 @@
 import { Sequelize } from "sequelize";
 
 export const sequelize = new Sequelize (
-    "ecommerce", // db name
+    "postgres", // db name
     "postgres", // username
     "postgres", // password
     {

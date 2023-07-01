@@ -1,4 +1,12 @@
-CREATE TABLE IF NOT EXISTS userRole (
+CREATE TABLE IF NOT EXISTS product (
+    id UUID PRIMARY KEY,
+    name varchar(50) NOT NULL,
+    company_id UUID,
+    price float,
+    stock int
+);
+
+/*CREATE TABLE IF NOT EXISTS userRole (
     id UUID PRIMARY KEY,
     name varchar NOT NULL
 );
@@ -34,15 +42,6 @@ CREATE TABLE IF NOT EXISTS order (
     FOREIGN KEY (company_id) REFERENCES company (id)
 );
 
-CREATE TABLE IF NOT EXISTS product (
-    id UUID PRIMARY KEY,
-    name varchar(50) NOT NULL,
-    company_id UUID,
-    price float,
-    stock int,
-    FOREIGN KEY (company_id) REFERENCES company (id)
-);
-
 CREATE TABLE IF NOT EXISTS orderDetail(
     id UUID PRIMARY KEY,
     order_id UUID,
@@ -51,16 +50,4 @@ CREATE TABLE IF NOT EXISTS orderDetail(
     product_id UUID,
     FOREIGN KEY order_id REFERENCES order (id),
     FOREIGN KEY product_id REFERENCES product (id)
-);
-
-
-/* 
-tablas:
-* Role
-* User
-* Company
-* Category
-* Order
-* Product
-* OrderDetail
-*/
+); */

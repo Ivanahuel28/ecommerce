@@ -1,7 +1,7 @@
 import "dotenv/config";
 import express from "express";
 import cors from "cors";
-import { router } from "./routes";
+import { router } from "./routes/index";
 
 // de esta manera se cargan la variables de entorno
 const PORT = process.env.PORT || 3001; 
@@ -17,4 +17,4 @@ app.use(cors({
     origin:['http://localhost:4200']
 })) */
 
-app.listen(PORT, () => console.log(`Escuchando en el puerto ${PORT}`));
+app.listen(PORT, () => console.log(`Escuchandoooo en el puerto ${PORT}`));
