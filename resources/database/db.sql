@@ -1,5 +1,6 @@
 CREATE TABLE IF NOT EXISTS product (
     id UUID PRIMARY KEY,
+    code varchar(20) UNIQUE KEY, 
     name varchar(50) NOT NULL,
     company_id UUID,
     price float,

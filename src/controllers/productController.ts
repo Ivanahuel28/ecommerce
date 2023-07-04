@@ -12,12 +12,18 @@ const getProducts = async (req: Request, res: Response) => {
     }
 }
 
-const getById = async (req:Request, res: Response ) => {
-    /* try {
-        res.json(await getById());
+const getById = async ({params}: Request, res: Response ) => {
+    try {
+        // const req1 = params.id;
+        res.json( await Product.findAll({
+            attributes: ["id", "name", "company_id", "price", "stock"],
+            where: {
+                code: params.id
+            }
+        }));
     } catch (error) {
         handleHttp(res, "ERROR on products findAll()");
-    } */
+    }
 }
 
 export { getProducts, getById };
