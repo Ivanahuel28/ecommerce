@@ -34,9 +34,6 @@
     "tsconfig-paths": "^4.2.0"
   },
   "nodemonConfig": {
-    "watch": [
-      "app.ts"
-    ],
     "ext": "ts",
     "ignore": [
       ".git",
