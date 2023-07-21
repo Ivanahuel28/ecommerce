@@ -6,10 +6,12 @@ const Product = sequelize.define(
     {
         id: {
             type: DataTypes.UUID,
-            primaryKey: true
+            primaryKey: true,
+            defaultValue: DataTypes.UUIDV4
         },
         code: {
             type: DataTypes.STRING,
+            allowNull: false,
             unique: true
         },
         name: {

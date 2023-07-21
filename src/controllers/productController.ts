@@ -22,8 +22,56 @@ const getById = async ({params}: Request, res: Response ) => {
             }
         }));
     } catch (error) {
-        handleHttp(res, "ERROR on products findAll()");
+        handleHttp(res, "ERROR on products getById()");
     }
 }
 
-export { getProducts, getById };
+const createProduct = async ({body}: Request, res: Response) => {
+
+    try {
+        res.json( await Product.create(
+            {
+                code: body.code,
+                name: body.name,
+                company_id: body.company_id,
+                price: body.type,
+                stock: body.stock
+            }
+        ));
+    } catch ( error ) {
+        handleHttp(res, "ERROR on products createProduct()", error);
+    }
+}
+
+const removeByCode = async ({params}: Request, res: Response) => {
+    try {
+        res.json( await Product.destroy({
+            where: {
+                code: params.code
+            }
+        }));
+    } catch ( error ) {
+        handleHttp(res, "ERROR on products createProduct()", error);
+    }
+}
+
+const updateByCode = async ({params, body}: Request, res: Response) => {
+    try {
+        res.json( await Product.update(
+            {
+                name: body.name,
+                company_id: body.company_id,
+                price: body.type,
+                stock: body.stock
+            }
+            ,{
+            where: {
+                code: params.code
+            }
+        }));
+    } catch ( error ) {
+        handleHttp(res, "ERROR on products createProduct()", error);
+    }
+}
+
+export { getProducts, getById, createProduct, removeByCode, updateByCode };
