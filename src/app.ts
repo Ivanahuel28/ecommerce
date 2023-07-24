@@ -17,4 +17,4 @@ app.use(cors({
     origin:['http://localhost:4200']
 })) */
 
-app.listen(PORT, () => console.log(`Escuchandoooo en el puerto ${PORT}`));
+app.listen(PORT, () => console.log(`Escuchando en el puerto ${PORT}`));

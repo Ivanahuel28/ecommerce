@@ -1,3 +1,5 @@
+simple CRUD with express ( typescript )
+
 start project:
 `npm run dev`
 

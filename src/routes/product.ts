@@ -14,5 +14,4 @@ router.put("/", createProduct);
 router.delete("/:code", removeByCode);
 router.post("/:code", updateByCode );
 
-
 export { router };
